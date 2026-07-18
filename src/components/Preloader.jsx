@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export default function Preloader({ onComplete }) {
   const [progress, setProgress] = useState(1)
 
   useEffect(() => {
-    const duration = 800 // 0.8 seconds to reach 100%
+    const duration = 1200
     const intervalTime = 16
     const steps = duration / intervalTime
     let currentStep = 0
@@ -19,45 +19,100 @@ export default function Preloader({ onComplete }) {
         clearInterval(timer)
         setTimeout(() => {
           onComplete()
-        }, 200) // brief pause at 100%
+        }, 300)
       }
     }, intervalTime)
 
     return () => clearInterval(timer)
   }, [onComplete])
 
+  const text = "CREATIVE DESIGNER • CREATIVE DESIGNER • "
+  const chars = text.split("")
+  const radius = 300
+
   return (
     <motion.div
-      className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#f4f4f4]"
-      initial={{ y: 0 }}
-      exit={{ y: '-100%', opacity: 0 }}
-      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+      className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-[#f4f4f4] overflow-hidden"
+      initial={{ y: '-100%' }}
+      animate={{ y: 0 }}
+      exit={{ y: '100%', opacity: 0 }}
+      transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+      style={{ perspective: '1000px' }}
     >
-      <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
-        {/* Rotating Text Ring */}
+      <div className="relative w-full h-full flex items-center justify-center">
+        
+        {/* Outer 3D Rotating Text Ring */}
         <motion.div
-          className="absolute inset-0"
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+          className="absolute flex items-center justify-center"
+          style={{ transformStyle: 'preserve-3d' }}
+          animate={{ 
+            rotateY: [0, 360],
+            rotateX: [10, -20, 15, -15, 10],
+            rotateZ: [0, -10, 15, -5, 0],
+            y: [0, -30, 20, -15, 0],
+            x: [0, 20, -20, 15, 0]
+          }}
+          transition={{ 
+            rotateY: { repeat: Infinity, duration: 40, ease: "linear" },
+            rotateX: { repeat: Infinity, duration: 35, ease: "easeInOut" },
+            rotateZ: { repeat: Infinity, duration: 30, ease: "easeInOut" },
+            y: { repeat: Infinity, duration: 25, ease: "easeInOut" },
+            x: { repeat: Infinity, duration: 28, ease: "easeInOut" }
+          }}
         >
-          <svg viewBox="0 0 100 100" className="w-full h-full" style={{ overflow: 'visible' }}>
-            <path
-              id="circlePath"
-              d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
-              fill="none"
-            />
-            <text>
-              <textPath href="#circlePath" className="text-[12px] font-bold tracking-[3px] uppercase fill-black">
-                CREATIVE DESIGNER • CREATIVE DESIGNER • 
-              </textPath>
-            </text>
-          </svg>
+          {chars.map((char, i) => (
+            <span
+              key={`outer-${i}`}
+              className="absolute text-4xl md:text-6xl font-black text-black uppercase"
+              style={{
+                transform: `rotateY(${i * (-360 / chars.length)}deg) translateZ(${radius}px)`,
+                backfaceVisibility: 'visible',
+              }}
+            >
+              {char}
+            </span>
+          ))}
         </motion.div>
 
-        {/* Percentage */}
-        <div className="absolute text-2xl md:text-3xl font-bold text-black tabular-nums">
+        {/* Lower Smaller 3D Rotating Text Ring */}
+        <motion.div
+          className="absolute flex items-center justify-center mt-32 md:mt-48"
+          style={{ transformStyle: 'preserve-3d' }}
+          animate={{ 
+            rotateY: [360, 0],
+            rotateX: [-10, 20, -15, 15, -10],
+            rotateZ: [10, -5, 0, 15, 10],
+            y: [0, 10, -10, 10, 0],
+          }}
+          transition={{ 
+            rotateY: { repeat: Infinity, duration: 35, ease: "linear" },
+            rotateX: { repeat: Infinity, duration: 40, ease: "easeInOut" },
+            rotateZ: { repeat: Infinity, duration: 35, ease: "easeInOut" },
+            y: { repeat: Infinity, duration: 25, ease: "easeInOut" },
+          }}
+        >
+          {chars.map((char, i) => (
+            <span
+              key={`inner-${i}`}
+              className="absolute text-xl md:text-2xl font-bold text-black/60 uppercase"
+              style={{
+                transform: `rotateY(${i * (-360 / chars.length)}deg) translateZ(${radius - 100}px)`,
+                backfaceVisibility: 'visible',
+              }}
+            >
+              {char}
+            </span>
+          ))}
+        </motion.div>
+
+        {/* Percentage Indicator */}
+        <motion.div 
+          className="absolute bottom-[15%] text-xl font-bold text-black"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           {progress}%
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   )

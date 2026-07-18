@@ -147,9 +147,9 @@ export default function App() {
       scrollToId(id)
       return
     }
-    
+
     setTransitionState({ active: true, section: id })
-    
+
     setTimeout(() => {
       scrollToId(id)
       setTimeout(() => {
@@ -192,16 +192,16 @@ export default function App() {
       {/* NEW LIGHT THEME HERO */}
       <section className="relative min-h-screen bg-[#f4f4f4] text-black overflow-hidden flex flex-col pt-6 px-6 lg:px-12 font-['Outfit'] z-10">
         {/* Custom Nav for Hero */}
-        <motion.nav 
+        <motion.nav
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex justify-between items-start text-xs md:text-sm font-semibold tracking-widest uppercase mb-auto z-20"
+          className="flex justify-between items-start text-sm md:text-base font-semibold tracking-widest uppercase mb-auto z-20"
         >
           <div className="w-1/3 leading-tight">
-            SHUBHENDU NATH<br/>BISWAS
+            SHUBHENDU NATH<br />BISWAS
           </div>
-          <div className="hidden md:flex gap-4 lg:gap-8 w-1/3 justify-center text-[10px] lg:text-xs">
+          <div className="hidden md:flex gap-4 lg:gap-8 w-1/3 justify-center text-xs lg:text-sm">
             <a href="#services" className="hover:opacity-60 transition whitespace-nowrap" onClick={(e) => { e.preventDefault(); handleNavigate('services') }}>[ SERVICES ]</a>
             <a href="#portfolio" className="hover:opacity-60 transition whitespace-nowrap" onClick={(e) => { e.preventDefault(); handleNavigate('portfolio') }}>[ PROJECTS ]</a>
             <a href="#skills" className="hover:opacity-60 transition whitespace-nowrap" onClick={(e) => { e.preventDefault(); handleNavigate('skills') }}>[ SKILLS ]</a>
@@ -213,63 +213,79 @@ export default function App() {
         </motion.nav>
 
         {/* Central Content */}
-        <div className="relative flex-grow flex flex-col items-center justify-center -mt-10 z-10">
-          <div className="absolute top-[10%] left-[5%] md:left-[10%] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">I AM</div>
-          
+        <div className="relative flex-grow flex flex-col items-center justify-center mt-8 md:-mt-10 z-10">
+          <div className="absolute top-[-5%] md:top-[10%] left-[5%] md:left-[10%] text-xs md:text-sm font-bold tracking-[0.2em] uppercase">I AM</div>
+
           <motion.h1 
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 100 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] whitespace-nowrap text-center leading-none font-black tracking-tighter text-black uppercase z-20 mix-blend-difference"
-            style={{ WebkitTextStroke: '2px black', color: 'transparent' }}
+            className="mt-6 md:mt-0 flex flex-wrap justify-center text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] whitespace-nowrap text-center leading-none font-black tracking-tighter text-black uppercase z-20 mix-blend-difference"
           >
-            <span style={{ color: 'black', WebkitTextStroke: '0' }}>CREATIVE</span> DESIGNER
+            {"CREATIVE DESIGNER".split("").map((char, i) => {
+              // Create a staggered/scattered baseline effect
+              const offsets = [0, 8, -12, 10, -5, 15, -8, 5, 0, -15, 12, -10, 8, -5, 15, -12, 0]
+              const isOutline = i < 8 // "CREATIVE" is outlined
+              return (
+                <span 
+                  key={i} 
+                  style={{ 
+                    transform: `translateY(${offsets[i] || 0}px)`,
+                    WebkitTextStroke: isOutline ? '2px black' : '0',
+                    color: isOutline ? 'transparent' : 'black',
+                    display: 'inline-block'
+                  }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              )
+            })}
           </motion.h1>
-          
+
           <div className="relative mt-8 md:mt-12 w-[150px] md:w-[220px] h-[200px] md:h-[280px] z-10 overflow-hidden shadow-2xl rounded-sm">
-             <motion.img 
-               initial={{ y: '-100%' }}
-               animate={{ y: isLoaded ? 0 : '-100%' }}
-               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-               src="/profile.avif"
-               alt="Shubhendu Nath Biswas"
-               className="w-full h-full object-cover"
-               onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop' }}
-             />
+            <motion.img
+              initial={{ y: '-100%' }}
+              animate={{ y: isLoaded ? 0 : '-100%' }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              src="/profile.avif"
+              alt="Shubhendu Nath Biswas"
+              className="w-full h-full object-cover"
+              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop' }}
+            />
           </div>
 
-          <div className="absolute right-[5%] md:right-[10%] top-[45%] hidden md:block text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-black">
+          <div className="absolute right-[5%] md:right-[10%] top-[45%] hidden md:block text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-black">
             BASED IN INDIA
           </div>
         </div>
 
         {/* Bottom Elements */}
-        <div className="relative flex flex-col md:flex-row justify-between items-center md:items-end gap-8 md:gap-0 pb-8 z-0 text-[10px] md:text-xs font-bold tracking-widest uppercase mt-12 md:mt-0">
-          <motion.div 
+        <div className="relative flex flex-col lg:flex-row justify-between items-center lg:items-end gap-8 lg:gap-0 pb-8 z-0 text-xs md:text-sm font-bold tracking-widest uppercase mt-12 lg:mt-0">
+          <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : -100 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="flex flex-col gap-1 w-full md:w-1/3 text-center md:text-left items-center md:items-start"
+            className="flex flex-col gap-1 w-full lg:w-1/3 text-center lg:text-left items-center lg:items-start"
           >
             <div>/ WEB DEVELOPMENT</div>
             <div>/ APP DESIGN (UI/UX)</div>
             <div>/ HARDWARE & NETWORKS</div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-            className="w-full md:w-1/3 text-center leading-relaxed opacity-70"
+            className="w-full lg:w-1/3 text-center leading-relaxed opacity-70"
           >
             I'M AN EXPERIENCED DEVELOPER AND DESIGNER, WHO BUILDS MEMORABLE EXPERIENCES FOR BRANDS OF ALL SIZES
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : 100 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="w-full md:w-1/3 flex flex-col items-center md:items-end"
+            className="w-full lg:w-1/3 flex flex-col items-center lg:items-end"
           >
             <div className="mb-2">AVAILABLE FOR COLLABORATION ↘</div>
             <a href="mailto:01234sumon@gmail.com" className="lowercase font-semibold flex items-center gap-2 hover:opacity-70 transition border-b border-transparent hover:border-black pb-0.5">
