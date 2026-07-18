@@ -244,12 +244,12 @@ export default function App() {
         </div>
 
         {/* Bottom Elements */}
-        <div className="relative flex justify-between items-end pb-8 z-0 text-[10px] md:text-xs font-bold tracking-widest uppercase">
+        <div className="relative flex flex-col md:flex-row justify-between items-center md:items-end gap-8 md:gap-0 pb-8 z-0 text-[10px] md:text-xs font-bold tracking-widest uppercase mt-12 md:mt-0">
           <motion.div 
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : -100 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="flex flex-col gap-1 w-1/3 text-left"
+            className="flex flex-col gap-1 w-full md:w-1/3 text-center md:text-left items-center md:items-start"
           >
             <div>/ WEB DEVELOPMENT</div>
             <div>/ APP DESIGN (UI/UX)</div>
@@ -260,7 +260,7 @@ export default function App() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-            className="w-1/3 text-center leading-relaxed opacity-70"
+            className="w-full md:w-1/3 text-center leading-relaxed opacity-70"
           >
             I'M AN EXPERIENCED DEVELOPER AND DESIGNER, WHO BUILDS MEMORABLE EXPERIENCES FOR BRANDS OF ALL SIZES
           </motion.div>
@@ -269,7 +269,7 @@ export default function App() {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : 100 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="w-1/3 flex flex-col items-end"
+            className="w-full md:w-1/3 flex flex-col items-center md:items-end"
           >
             <div className="mb-2">AVAILABLE FOR COLLABORATION ↘</div>
             <a href="mailto:01234sumon@gmail.com" className="lowercase font-semibold flex items-center gap-2 hover:opacity-70 transition border-b border-transparent hover:border-black pb-0.5">
