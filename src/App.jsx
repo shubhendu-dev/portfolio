@@ -6,6 +6,7 @@ import AnimatedHeading from './components/AnimatedHeading'
 import Button from './components/Button'
 import Preloader from './components/Preloader'
 import SectionTransition from './components/SectionTransition'
+import VisitorCount from './components/VisitorCount'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { SiGmail, SiInstagram, SiFacebook } from 'react-icons/si'
 import {
