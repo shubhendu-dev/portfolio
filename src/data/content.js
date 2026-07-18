@@ -5,7 +5,7 @@ export const brand = {
   email: '01234sumon@gmail.com',
   phone: '+91-9647530263',
   insta: 'shubhendu00',
-  fb: 'shubhendu00',
+  fb: 'rj.shubhendu',
 }
 
 export const navItems = [
