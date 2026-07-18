@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --text: #111827;
+  --text-h: #000000;
+  --bg0: #f4f4f4;
+  --bg1: #e5e5e5;
+  --border: rgba(0, 0, 0, 0.1);
+  --accent: #000000; 
+  --accent2: #4b5563; 
+  --accent-bg: rgba(0, 0, 0, 0.05);
+  --card: rgba(255, 255, 255, 0.6);
+  --card-hover: rgba(255, 255, 255, 0.9);
+  --shadow-glow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg0);
+  color: var(--text);
+  margin: 0;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.35);
+}
+
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: var(--card-hover);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}

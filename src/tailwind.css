@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --bg0:#07060a;
+  --bg1:#0c0b14;
+  --card:rgba(255,255,255,.06);
+  --card2:rgba(255,255,255,.09);
+  --text:#eae7f2;
+  --muted:rgba(234,231,242,.72);
+  --brand:#a855f7;
+  --brand2:#22c55e;
+  --line:rgba(255,255,255,.12);
+}
+
+html,body{height:100%}
+body{background:radial-gradient(1200px 800px at 20% 10%, rgba(168,85,247,.25), transparent 55%),
+             radial-gradient(900px 600px at 85% 15%, rgba(34,197,94,.18), transparent 55%),
+             linear-gradient(180deg, var(--bg0), var(--bg1));
+     color:var(--text);
+}
+
+::selection{background:rgba(168,85,247,.35)}
+
