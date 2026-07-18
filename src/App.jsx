@@ -208,7 +208,8 @@ export default function App() {
             <a href="#skills" className="hover:opacity-60 transition whitespace-nowrap" onClick={(e) => { e.preventDefault(); handleNavigate('skills') }}>[ SKILLS ]</a>
             <a href="#contact" className="hover:opacity-60 transition whitespace-nowrap" onClick={(e) => { e.preventDefault(); handleNavigate('contact') }}>[ CONNECT ]</a>
           </div>
-          <div className="w-1/3 text-right">
+          <div className="w-1/3 flex items-center justify-end gap-4 md:gap-8">
+            <VisitorCount />
             <a href="#contact" className="hover:opacity-60 transition" onClick={(e) => { e.preventDefault(); handleNavigate('contact') }}>CONTACT ME ↗</a>
           </div>
         </motion.nav>
