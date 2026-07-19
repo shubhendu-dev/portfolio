@@ -49,18 +49,18 @@ export default function Navbar({ items, brand, onNavigate }) {
             type="button"
           >
             <div className="text-left">
-              <div className="text-black font-bold leading-none">{brand?.short ?? 'Repair & Build'}</div>
-              <div className="text-xs text-black/60 mt-1 font-medium">PC • Printer • Build • Apps</div>
+              <div className="text-black font-black text-xl tracking-wide uppercase leading-none">{brand?.short ?? 'Repair & Build'}</div>
+              <div className="text-[13px] text-black/60 mt-1 font-semibold uppercase tracking-wider">PC • Printer • Build • Apps</div>
             </div>
           </button>
 
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-4">
             {items.map((it) => (
               <button
                 key={it.id}
                 onClick={() => navigate(it.id)}
-                className={`px-4 py-2 rounded-2xl text-sm font-bold transition border border-transparent ${
-                  activeId === it.id ? 'text-black' : 'text-black/60 hover:text-black'
+                className={`px-3 py-2 rounded-2xl text-[15px] uppercase tracking-[0.15em] font-black transition border border-transparent ${
+                  activeId === it.id ? 'text-black' : 'text-black/50 hover:text-black'
                 }`}
                 type="button"
               >

@@ -222,36 +222,20 @@ export default function App() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 100 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="mt-6 md:mt-0 flex flex-wrap justify-center text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[7vw] whitespace-nowrap text-center leading-none font-black tracking-tighter text-black uppercase z-20 mix-blend-difference"
+            className="mt-6 md:mt-0 flex flex-wrap justify-center text-[13vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] whitespace-nowrap text-center leading-none font-black tracking-tighter text-black uppercase z-0"
+            style={{ transform: 'scaleY(1.1)' }}
           >
-            {"CREATIVE DESIGNER".split("").map((char, i) => {
-              // Create a staggered/scattered baseline effect
-              const offsets = [0, 8, -12, 10, -5, 15, -8, 5, 0, -15, 12, -10, 8, -5, 15, -12, 0]
-              const isOutline = i < 8 // "CREATIVE" is outlined
-              return (
-                <span 
-                  key={i} 
-                  style={{ 
-                    transform: `translateY(${offsets[i] || 0}px)`,
-                    WebkitTextStroke: isOutline ? '2px black' : '0',
-                    color: isOutline ? 'transparent' : 'black',
-                    display: 'inline-block'
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              )
-            })}
+            CREATIVEDESIGNER
           </motion.h1>
 
-          <div className="relative mt-8 md:mt-12 w-[150px] md:w-[220px] h-[200px] md:h-[280px] z-10 overflow-hidden shadow-2xl rounded-sm">
+          <div className="relative -mt-6 sm:-mt-8 md:-mt-12 w-[220px] sm:w-[280px] md:w-[420px] h-[220px] sm:h-[280px] md:h-[420px] z-20 overflow-hidden shadow-2xl rounded-sm">
             <motion.img
               initial={{ y: '-100%' }}
               animate={{ y: isLoaded ? 0 : '-100%' }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               src="/profile.avif"
               alt="Shubhendu Nath Biswas"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale"
               onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop' }}
             />
           </div>
